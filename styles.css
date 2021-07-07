@@ -1,0 +1,113 @@
+body{ height:100vh; margin:0; }
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.header{
+    background-color: #232F3E;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+.brand a{
+    color: white;
+    font-size:2.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+.header-links a{
+    color:#ffffff;
+    text-decoration: none;
+}
+.header-links a:hover{
+    color:orangered;
+}
+.footer{
+    background-color: #232F3E;
+    color:#ffffff;
+    display: flex;
+    margin-top:auto; 
+    padding: 0.5rem;
+    justify-content: center;
+}
+
+/* HomeScreen */
+.products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.products li{
+    /* flex: 0 1 34rem; */
+    padding:0;
+    margin: 1rem;
+    border-bottom: 1px rgb(209, 203, 203) solid;
+    list-style-type: none;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    row-gap: 5px;
+}
+.product-name{
+    font-size:1.6rem;
+    text-decoration: none;
+}
+.product-brand{
+    font-size: 1.2rem;
+    color:#808080;
+}
+.product-price{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.product-image{
+    max-width:10rem;
+    max-height: 10rem;
+}
+.product-rating{
+margin-bottom: 1rem;
+}
+
+/* SideBar */
+.brand button{
+    font-size: 2rem;
+    padding: .5rem;
+    background: none;
+    border: none;
+    color:#ffffff;
+    cursor: pointer;
+}
+.sidebar{
+    position: fixed;
+    transform: translateX(-30rem);
+    width:30rem;
+    background-color: #f0f0f0;
+    height: 100%;
+}
+.sidebar.open{
+    transform: translateX(0); 
+}
+.sidebar-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.sidebar-header h3{
+    margin-left: 0.5rem;
+}
+.sidebar-close{
+    border-radius: 50%;
+    border:0.1rem black solid;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+}
