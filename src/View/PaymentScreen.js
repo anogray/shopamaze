@@ -5,6 +5,14 @@ import { savePayment } from '../redux/actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
 function PaymentScreen(props) {
+
+
+  const razorScript = ()=>{
+    let sr = document.createElement("script");
+    sr.src="https://checkout.razorpay.com/v1/checkout.js"
+    document.body.appendChild(sr);
+    console.log({sr});
+  }
     const [paymentMethod, setPaymentMethod] = useState('');
   
     const dispatch = useDispatch();
@@ -30,15 +38,15 @@ function PaymentScreen(props) {
                     type="radio"
                     name="paymentMethod"
                     id="paymentMethod"
-                    value="paypal"
+                    value="razorpay"
                     onChange={(e) => setPaymentMethod(e.target.value)}
                   ></input>
-                  <label for="paymentMethod">Paypal</label>
+                  <label for="paymentMethod">Razorpay</label>
                 </div>
               </li>
   
               <li>
-                <button type="submit" className="button primary">
+                <button type="submit" className="button primary" onClick={razorScript}>
                   Continue
                 </button>
               </li>

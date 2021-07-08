@@ -2,7 +2,9 @@ import { useSelector } from 'react-redux';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import CartScreen from './View/CartScreen';
 import HomeScreen from './View/HomeScreen';
+import OrderScreen from './View/OrderScreen';
 import PaymentScreen from './View/PaymentScreen';
+import PlaceOrderScreen from './View/PlaceOrderScreen';
 import ProductScreen from './View/ProductScreen';
 import ProductsScreen from './View/ProductsScreen';
 import RegisterScreen from './View/RegisterScreen';
@@ -78,6 +80,9 @@ const closeMenu=()=> {
           <Route path="/cart/:id?" component = {CartScreen} />
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/payment" component={PaymentScreen} />
+          <Route path="/placeorder" component={PlaceOrderScreen} />
+          <Route path="/order/:id" component={OrderScreen} />
+          {/* <Route path="/order" component={OrdersScreen} /> */}
         </Switch>
         </div>
     </main>
