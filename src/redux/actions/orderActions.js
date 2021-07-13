@@ -6,6 +6,7 @@ import {
 
 const createOrder = (order) => async (dispatch, getState) => {
   try {
+    console.log("dispatched createOrder",order);
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
     const { userSignin: { userInfo } } = getState();
     const { data: { data: newOrder } } = await Axios.post("/api/orders", order, {
@@ -23,7 +24,7 @@ const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_ORDER_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get("/api/orders/mine", {
+    const { data } = await Axios.get("/api/orders/paid", {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -66,7 +67,7 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST, payload: paymentResult });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.put("/api/orders/" + order._id + "/pay", paymentResult, {
+    const { data } = await Axios.get("/api/orders/" + order._id + "/pay", {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });

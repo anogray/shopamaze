@@ -24,6 +24,7 @@ function PlaceOrderScreen(props) {
 
   const placeOrderHandler = () => {
     // create an order
+    console.log("ordered prod button")
     dispatch(createOrder({
       orderItems: cartItems, shipping, payment, itemsPrice, shippingPrice,
       taxPrice, totalPrice

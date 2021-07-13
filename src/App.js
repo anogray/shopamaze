@@ -3,13 +3,16 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
 import CartScreen from './View/CartScreen';
 import HomeScreen from './View/HomeScreen';
 import OrderScreen from './View/OrderScreen';
+import OrdersScreen from './View/OrdersScreen';
 import PaymentScreen from './View/PaymentScreen';
 import PlaceOrderScreen from './View/PlaceOrderScreen';
 import ProductScreen from './View/ProductScreen';
 import ProductsScreen from './View/ProductsScreen';
+import ProfileScreen from './View/ProfileScreen';
 import RegisterScreen from './View/RegisterScreen';
 import ShippingScreen from './View/ShippingScreen';
 import SignInScreen from './View/SignInScreen';
+import Verification from './View/Verification';
 
 function App() {
 
@@ -82,7 +85,9 @@ const closeMenu=()=> {
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/order/:id" component={OrderScreen} />
-          {/* <Route path="/order" component={OrdersScreen} /> */}
+          <Route path="/orders" component={OrdersScreen} />
+          <Route path="/profile" component={ProfileScreen} />
+          <Route path="/verification" component={Verification} />
         </Switch>
         </div>
     </main>

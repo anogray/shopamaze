@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createOrder, detailsOrder, payOrder } from '../redux/actions/orderActions';
-import PaypalButton from '../components/PaypalButton';
+import RazorpayPayment from '../components/RazorpayPayment';
 function OrderScreen(props) {
 
   const orderPay = useSelector(state => state.orderPay);
@@ -18,8 +18,9 @@ function OrderScreen(props) {
     };
   }, [successPay]);
 
-  const handleSuccessPayment = (paymentResult) => {
-    dispatch(payOrder(order, paymentResult));
+  const handleSuccessPayment = () => {
+    console.log("on sucess ran",order);
+    dispatch(payOrder(order));
   }
 
   const orderDetails = useSelector(state => state.orderDetails);
@@ -99,7 +100,7 @@ function OrderScreen(props) {
             <li className="placeorder-actions-payment">
               {loadingPay && <div>Finishing Payment...</div>}
               {!order.isPaid &&
-                <PaypalButton
+                <RazorpayPayment
                   amount={order.totalPrice}
                   onSuccess={handleSuccessPayment} />
               }

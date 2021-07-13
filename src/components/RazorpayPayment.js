@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const __DEV__ = document.domain === 'localhost'
 
 
-function PaypalButton(props) {
+function RazorpayPayment(props) {
   const [sdkReady, setSdkReady] = useState(false);
-
+  const {order} = useSelector(state=>state.orderDetails);
+  
+  console.log("paymentprops",props);
   const addRazorPay = (src) =>{
       
     return new Promise((resolve,reject)=>{
@@ -34,7 +37,7 @@ function PaypalButton(props) {
             return
         }
     
-        const {data} = await axios.post('/api/razorpay');
+        const {data} = await axios.post('/api/razorpay',order);
     
             console.log("paymentData from server",data)
     
@@ -45,11 +48,14 @@ function PaypalButton(props) {
                 order_id: data.id,
                 name: 'Testing order',
                 description: 'Thank you for nothing. Please give us some exp',
+                // callback_url: 'http://localhost:3004/api/razorpay/verification',
                 image: '',
                 handler: function (response) {
-                    alert(response.razorpay_payment_id)
-                    alert(response.razorpay_order_id)
-                    alert(response.razorpay_signature)
+                  console.log("props handler",props);
+                  props.onSuccess();
+                    // alert(response.razorpay_payment_id)
+                    // alert(response.razorpay_order_id)
+                    // alert(response.razorpay_signature)
                 },
                 prefill: {
                     name:"MrTest",
@@ -59,11 +65,10 @@ function PaypalButton(props) {
             }
             console.log("scripts",window);
             const paymentObject = new window.Razorpay(options)
-            paymentObject.open()
+            paymentObject.open();
     }catch(err){
         console.log({err});
     }
-
 
   }
   
@@ -122,4 +127,4 @@ function PaypalButton(props) {
 //     onApprove={(data, actions) => onApprove(data, actions)} />
 }
 
-export default PaypalButton;
+export default RazorpayPayment;
