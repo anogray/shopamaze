@@ -62,9 +62,6 @@ function PlaceOrderScreen(props) {
               <h3>
                 Shopping Cart
           </h3>
-              <div>
-                Price
-          </div>
             </li>
             {
               cartItems.length === 0 ?
@@ -74,9 +71,9 @@ function PlaceOrderScreen(props) {
                 :
                 cartItems.map(item =>
                   <li>
-                    <div className="cart-image">
-                      <img src={item.image} alt="product" />
-                    </div>
+                    <div className="cart-item">
+                      <img src={item.image}  className="cart-image" alt="product" />
+                      <div className="cart-item-details">
                     <div className="cart-name">
                       <div>
                         <Link to={"/product/" + item.product}>
@@ -89,7 +86,9 @@ function PlaceOrderScreen(props) {
                       </div>
                     </div>
                     <div className="cart-price">
-                      ${item.price}
+                     Price : ${item.price}
+                    </div>
+                      </div>
                     </div>
                   </li>
                 )

@@ -56,7 +56,7 @@ function OrderScreen(props) {
               Payment Method: {order.payment.paymentMethod}
             </div>
             <div>
-              {order.isPaid ? "Paid at " + order.isPaid : "Not Paid."}
+              {order.isPaid ? "Paid " + order.isPaid : "Not Paid."}
             </div>
           </div>
           <div>
@@ -65,9 +65,6 @@ function OrderScreen(props) {
                 <h3>
                   Shopping Cart
           </h3>
-                <div>
-                  Price
-          </div>
               </li>
               {
                 order.orderItems.length === 0 ?
@@ -77,8 +74,8 @@ function OrderScreen(props) {
                   :
                   order.orderItems.map(item =>
                     <li key={item._id}>
-                      <div className="cart-image">
-                        <img src={item.image} alt="product" />
+                      <div className="cart-item">
+                        <img src={item.image} className="cart-image" alt="product" />
                       </div>
                       <div className="cart-name">
                         <div>
@@ -92,7 +89,7 @@ function OrderScreen(props) {
                         </div>
                       </div>
                       <div className="cart-price">
-                        ${item.price}
+                       Price : ${item.price}
                       </div>
                     </li>
                   )

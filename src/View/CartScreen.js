@@ -44,7 +44,6 @@ const CartScreen = (props) => {
                   {/* <div className="cart-image"> */}
                   <img src={item.image} className="cart-image" alt="product" />
                   {/* </div> */}
-                  <div className="cart-item-desc">
                     <div className="cart-item-details">
                     <Link to={"/product/" + item.product}/>
                       <div className="cart-item-name">{item.name}</div>
@@ -74,7 +73,6 @@ const CartScreen = (props) => {
 
                     <div className="cart-item-price">$ {item.price} </div>
                   </div>
-                </div>
               </li>
             ))
           )}

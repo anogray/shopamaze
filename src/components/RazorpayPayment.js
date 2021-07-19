@@ -118,7 +118,7 @@ function RazorpayPayment(props) {
 //   const Button = window.paypal.Buttons.driver('react', { React, ReactDOM });
 
   return (
-    <button onClick={displayRazorpay}>
+    <button className="button primary full-width" onClick={displayRazorpay}>
         Pay Now 
     </button>
   )
