@@ -24,12 +24,12 @@ const reducer = combineReducers({
     productSave: productSaveReducer,
     productDelete: productDeleteReducer,
     orderCreate: orderCreateReducer,
-  orderDetails: orderDetailsReducer,
-  orderPay: orderPayReducer,
-  userUpdate: userUpdateReducer,
-  myOrderList: myOrderListReducer,
-  orderList: orderListReducer,
-  orderDelete: orderDeleteReducer,
+    orderDetails: orderDetailsReducer,
+    orderPay: orderPayReducer,
+    userUpdate: userUpdateReducer,
+    myOrderList: myOrderListReducer,
+    orderList: orderListReducer,
+    orderDelete: orderDeleteReducer,
 
 })
 

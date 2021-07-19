@@ -26,6 +26,9 @@ export const cartReducer = (state={cartItems:[]}, action) => {
         case cart.CART_SAVE_PAYMENT:
             return {...state, payment: action.payload};    
 
+        case cart.CART_CLEAR_PAYMENT:
+            return {cartItems:[]}
+
         default:
             return state;
     }

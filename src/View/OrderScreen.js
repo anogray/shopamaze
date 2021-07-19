@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { createOrder, detailsOrder, payOrder } from '../redux/actions/orderActions';
+import { createOrder, detailsOrder, payOrder, clearOrderCreated, clearOrderDetails, clearOrderPaid } from '../redux/actions/orderActions';
 import RazorpayPayment from '../components/RazorpayPayment';
+import { clearCartSuccess } from '../redux/actions/cartActions';
+
 function OrderScreen(props) {
 
   const orderPay = useSelector(state => state.orderPay);
@@ -10,6 +12,11 @@ function OrderScreen(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     if (successPay) {
+      dispatch(clearCartSuccess());
+      dispatch(clearOrderCreated());
+      dispatch(clearOrderDetails());    
+      dispatch(clearOrderPaid());
+      
       props.history.push("/profile");
     } else {
       dispatch(detailsOrder(props.match.params.id));
@@ -49,7 +56,7 @@ function OrderScreen(props) {
               Payment Method: {order.payment.paymentMethod}
             </div>
             <div>
-              {order.isPaid ? "Paid at " + order.paidAt : "Not Paid."}
+              {order.isPaid ? "Paid at " + order.isPaid : "Not Paid."}
             </div>
           </div>
           <div>
