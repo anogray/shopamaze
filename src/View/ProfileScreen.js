@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { logout, update } from '../redux/actions/userActions';
 import { listMyOrders } from '../redux/actions/orderActions';
 import { useDispatch, useSelector } from 'react-redux';
+import Loader from '../components/Loader';
 
 function ProfileScreen(props) {
   const [name, setName] = useState('');
@@ -47,7 +48,7 @@ function ProfileScreen(props) {
               <h2>User Profile</h2>
             </li>
             <li>
-              {loading && <div>Loading...</div>}
+              {loading && <Loader/>}
               {error && <div>{error}</div>}
               {success && <div>Profile Saved Successfully.</div>}
             </li>
@@ -72,7 +73,7 @@ function ProfileScreen(props) {
             </li>
 
             <li>
-              <button type="submit" className="button primary">Update</button>
+              <button type="submit" className="button app-primary">Update</button>
             </li>
             <li>
               <button type="button" onClick={handleLogout} className="button secondary full-width">Logout</button>
@@ -82,7 +83,7 @@ function ProfileScreen(props) {
         </form>
       </div>
     </div>
-    <div className="profile-orders content-margined">
+    {/* <div className="profile-orders content-margined">
       {
         loadingOrders ? <div>Loading...</div> :
           errorOrders ? <div>{errorOrders} </div> :
@@ -110,7 +111,7 @@ function ProfileScreen(props) {
               </tbody>
             </table>
       }
-    </div>
+    </div> */}
   </div>
 }
 

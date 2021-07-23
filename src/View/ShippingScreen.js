@@ -56,7 +56,7 @@ const ShippingScreen = (props) => {
 
 
           <li>
-            <button type="submit" className="button primary">Continue</button>
+            <button type="submit" className="button app-primary">Continue</button>
           </li>
 
         </ul>

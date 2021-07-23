@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import {listProducts} from '../redux/actions/productActions';
+import Loader from '../components/Loader';
 export default function HomeScreen(){
 
     // const [products, setProduct] = useState([])
@@ -22,7 +23,7 @@ export default function HomeScreen(){
     return(
         <>
         {loading ? (
-            <div>Loading...</div>
+          <Loader/>
           ) : error ? (
             <div>{error}</div>
           ) : (

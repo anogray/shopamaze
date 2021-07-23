@@ -65,7 +65,7 @@ export default function RegisterScreen(props) {
                 </input>
                 </li>
                 <li>
-                <button type="submit" className="button primary">Register</button>
+                <button type="submit" className="button app-primary">Register</button>
                 </li>
                 <li>
                 Already have an account?

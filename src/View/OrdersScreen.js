@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../redux/actions/orderActions';
+import Loader from '../components/Loader';
 
 function OrdersScreen(props) {
   const orderList = useSelector(state => state.orderList);
@@ -22,7 +23,7 @@ function OrdersScreen(props) {
   const deleteHandler = (order) => {
     dispatch(deleteOrder(order._id));
   }
-  return loading ? <div>Loading...</div> :
+  return loading ? <Loader/> :
     <div className="content content-margined">
 
       <div className="order-header">

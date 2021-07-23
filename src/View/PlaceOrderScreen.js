@@ -101,7 +101,7 @@ function PlaceOrderScreen(props) {
       <div className="placeorder-action">
         <ul>
           <li>
-            <button className="button primary full-width" onClick={placeOrderHandler} >Place Order</button>
+            <button className="button app-primary full-width" onClick={placeOrderHandler} >Place Order</button>
           </li>
           <li>
             <h3>Order Summary</h3>

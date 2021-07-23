@@ -85,7 +85,7 @@ const CartScreen = (props) => {
           </h3>
           <button
             onClick={checkoutHandler}
-            className="button primary full-width"
+            className="button app-primary full-width"
             disabled={cartItems.length === 0}>
             Proceed to Checkout
           </button>

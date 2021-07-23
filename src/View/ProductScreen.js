@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import data from "../data"
 import {detailsProduct} from '../redux/actions/productActions';
+import Loader from '../components/Loader';
 
 
 export default function ProductScreen(props){
@@ -32,7 +33,7 @@ export default function ProductScreen(props){
         <div className="back-to-result">
             <Link to="/">Back to result</Link>
         </div>
-        {loading ? <div>Loading...</div> : 
+        {loading ? <Loader/> : 
         error ? <div>{error}</div> :
         (
         <div className="details">
@@ -76,7 +77,7 @@ export default function ProductScreen(props){
                 {product.countInStock > 0 && (
                     <button
                       onClick={handleAddToCart}
-                      className="button primary">
+                      className="button app-primary">
                       Add to Cart
                     </button>
                 )} 

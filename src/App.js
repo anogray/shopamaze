@@ -13,11 +13,16 @@ import RegisterScreen from './View/RegisterScreen';
 import ShippingScreen from './View/ShippingScreen';
 import SignInScreen from './View/SignInScreen';
 import Verification from './View/Verification';
+import {Modal, Button} from "react-bootstrap";
+import { useState } from 'react';
+import OrderHistory from './View/OrderHistory';
+
 
 function App() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  
 
 
   const  openMenu = ()=> {
@@ -27,10 +32,34 @@ const closeMenu=()=> {
     document.querySelector(".sidebar").classList.remove("open");
 }
 
+const AccountsList = ()=>(
+
+  <div className="account-list">
+      <div className="dropdown">
+                {/* <a href="#">Admin</a> */}
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/orders">Your Orders</Link>
+                  </li>
+                  { userInfo && true && <li>
+                    <Link to="/products">Products</Link>
+                  </li>}
+                </ul>
+              </div>
+  </div>
+)
+// const accountHandle = ()=>{
+
+//   document.querySelector(".account-list").classList.add("open");
+
+// }
+
+
+
   return (
     <BrowserRouter>
-    <div className="container">
-    <header className="header">
+    <div className="container-main">
+    <header className="header-app">
         <div className="brand">
             <button onClick={openMenu}>
                 &#9776;
@@ -39,25 +68,23 @@ const closeMenu=()=> {
         </div>
         <div className="header-links">
         <Link to ="/cart">Cart</Link>
+        <Link to ="/orderhistory">Orders</Link>
         {/* SignInScreen */}
         {userInfo ? (
-              <Link to="/profile">{userInfo.name}</Link>
+              <Link to="/profile" onClick={"accountHandle"}>{userInfo.name}</Link>
             ) : (
-              <Link to="/signin">Sign In</Link>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <a href="#">Admin</a>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/orders">Orders</Link>
-                    <Link to="/products">Products</Link>
-                  </li>
-                </ul>
+              <div className="account-handle">
+              <Link to ="/signin">Hello Sign In</Link>
+              
+              <AccountsList/>
               </div>
             )}
+              
+            
         </div>
     </header>
+    
+
     <aside className="sidebar">
         <div className="sidebar-header">
         <h3>Shopping Categories</h3>
@@ -82,6 +109,7 @@ const closeMenu=()=> {
           <Route path="/product/:id" component={ProductScreen} />
           <Route path="/cart/:id?" component = {CartScreen} />
           <Route path="/shipping" component={ShippingScreen} />
+          <Route path="/orderhistory" component={OrderHistory} />
           <Route path="/payment" component={PaymentScreen} />
           <Route path="/placeorder" component={PlaceOrderScreen} />
           <Route path="/order/:id" component={OrderScreen} />

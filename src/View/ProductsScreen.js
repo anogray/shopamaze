@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import {listProducts, saveProduct, deleteProduct} from '../redux/actions/productActions';
+import Loader from '../components/Loader';
 
 function ProductsScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -97,7 +98,7 @@ console.log("successSave",successSave);
     <div className="content content-margined">
       <div className="product-header">
         <h3>Products</h3>
-        <button className="button primary" onClick={() => openModal({})}>
+        <button className="button app-primary" onClick={() => openModal({})}>
           Create Product
         </button>
       </div>
@@ -109,7 +110,7 @@ console.log("successSave",successSave);
                 <h2>Create Product</h2>
               </li>
               <li>
-                {loadingSave && <div>Loading...</div>}
+                {loadingSave && <Loader/>}
                 {errorSave && <div>{errorSave}</div>}
               </li>
 
@@ -185,7 +186,7 @@ console.log("successSave",successSave);
                 ></textarea>
               </li>
               <li>
-                <button type="submit" className="button primary">
+                <button type="submit" className="button app-primary">
                   {id ? 'Update' : 'Create'}
                 </button>
               </li>

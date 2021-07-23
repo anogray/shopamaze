@@ -4,20 +4,26 @@ import { Link } from 'react-router-dom';
 import { createOrder, detailsOrder, payOrder, clearOrderCreated, clearOrderDetails, clearOrderPaid } from '../redux/actions/orderActions';
 import RazorpayPayment from '../components/RazorpayPayment';
 import { clearCartSuccess } from '../redux/actions/cartActions';
+import Toast from '../components/Toast';
+import {Modal,Button, Spinner} from "react-bootstrap";
+import Loader from '../components/Loader';
 
 function OrderScreen(props) {
 
   const orderPay = useSelector(state => state.orderPay);
   const { loading: loadingPay, success: successPay, error: errorPay } = orderPay;
   const dispatch = useDispatch();
+ 
   useEffect(() => {
     if (successPay) {
       dispatch(clearCartSuccess());
       dispatch(clearOrderCreated());
       dispatch(clearOrderDetails());    
-      dispatch(clearOrderPaid());
+      // setTimeout(()=>dispatch(clearOrderPaid()),5000);
+      setTimeout(()=>{
+        dispatch(clearOrderPaid());
+         props.history.push("/orderhistory")},2000);
       
-      props.history.push("/profile");
     } else {
       dispatch(detailsOrder(props.match.params.id));
     }
@@ -33,7 +39,25 @@ function OrderScreen(props) {
   const orderDetails = useSelector(state => state.orderDetails);
   const { loading, order, error } = orderDetails;
 
-  return loading ? <div>Loading ...</div> : error ? <div>{error}</div> :
+//   const ModalHtml = ()=>(
+//     <Modal.Dialog>
+//   <Modal.Header>
+//     <Modal.Title>Payment Succesfully Paid !</Modal.Title>
+//   </Modal.Header>
+
+//   <Modal.Body>
+//     <p>Redirecting to  Orders Screen</p>
+//   <Spinner animation="border" variant="primary" />
+    
+//   </Modal.Body>
+
+// </Modal.Dialog>
+// )
+
+
+
+  return successPay  ? <Toast/>
+    : loading ? <Loader/> : error ? <div>{error}</div> :
 
     <div>
       <div className="placeorder">
@@ -63,7 +87,7 @@ function OrderScreen(props) {
             <ul className="cart-list-container">
               <li>
                 <h3>
-                  Shopping Cart
+                  Order Items
           </h3>
               </li>
               {

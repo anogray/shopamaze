@@ -1,11 +1,11 @@
 body{ height:100vh; margin:0; }
 
-.container{
+.container-main{
     display: flex;
     flex-direction: column;
     height:100vh; margin:0; 
 }
-.header{
+.header-app{
     background-color: #232F3E;
     display: flex;
     justify-content: space-between;
@@ -172,7 +172,7 @@ flex-direction: column;
   .button:hover {
     border: 0.1rem #404040 solid;
   }
-  .button.primary {
+  .button.app-primary {
     background-color: #f0c040;
   }
   .button.secondary {
@@ -363,5 +363,126 @@ tbody > tr:nth-child(odd) {
   width: 100%;
 }
 
+.account-list{
+  display: none;
+  width: 100px;
+}
+
+.account-list.open{
+  display: block;
+  width: 100px;
+  /* position: relative;
+  right: -84%; */
+  background-color: lightblue;
+}
+
+.account-handle{
+  display: flex;
+  
+}
 
 
+/* order history */
+
+.ordered-container{
+  margin:auto;
+}
+
+.ordered-body {
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 8%;
+  border: 1px #ddd solid;
+  border-radius: 4px 4px 0 0;
+}
+.ordered-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  background-color: #f6f6f6;
+}
+
+
+.head-details{
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  /* grid-column-gap: 90px; */
+  /* column-gap: 90px; */
+  margin-left: 1%;
+  /* margin-top: 10px; */
+  align-items: center;
+}
+
+.order-extras {
+  display: flex;
+  /* width: 30%; */
+  /* justify-content: space-around; */
+  margin-right: 5%;
+}
+
+
+.ordered-img{
+  width: 12%;
+    margin-right: 5%;
+}
+.ordered-title{
+
+}
+
+.order-price{
+  margin-left:5%
+}
+.left div:first-child{
+  margin-right:5%;
+}
+.order-extras a{
+  margin-right: 5%;
+}
+
+.modal-body {
+  text-align: center;
+}
+
+.modal-header {
+  justify-content: center !important;
+ 
+}
+
+.modal-success{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 10%;
+  width: 50%;
+  border-radius: 18px;
+  border: 1px solid white;
+}
+.modal-success div{
+  margin: auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinner-loader {
+  color:blue;
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: -.125em;
+  border: .25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}

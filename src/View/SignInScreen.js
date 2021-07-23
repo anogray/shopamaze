@@ -49,7 +49,7 @@ function SigninScreen(props) {
           </input>
         </li>
         <li>
-          <button type="submit" className="button primary">Signin</button>
+          <button type="submit" className="button app-primary">Signin</button>
         </li>
         <li>
           New to amazona?

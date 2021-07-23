@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import Toast from "../components/Toast"
 const __DEV__ = document.domain === 'localhost'
 
 
@@ -48,12 +48,12 @@ function RazorpayPayment(props) {
                 order_id: data.id,
                 name: 'Testing order',
                 description: 'Thank you for nothing. Please give us some exp',
-                // callback_url: 'http://localhost:3004/api/razorpay/verification',
+                //  callback_url: 'http://localhost:3004/api/razorpay/verification',
                 image: '',
                 handler: function (response) {
                   console.log("props handler",props);
                   props.onSuccess();
-                    // alert(response.razorpay_payment_id)
+                    //  alert(response.razorpay_payment_id)
                     // alert(response.razorpay_order_id)
                     // alert(response.razorpay_signature)
                 },
@@ -118,7 +118,7 @@ function RazorpayPayment(props) {
 //   const Button = window.paypal.Buttons.driver('react', { React, ReactDOM });
 
   return (
-    <button className="button primary full-width" onClick={displayRazorpay}>
+    <button className="button app-primary full-width" onClick={displayRazorpay}>
         Pay Now 
     </button>
   )

@@ -46,7 +46,7 @@ function PaymentScreen(props) {
               </li>
   
               <li>
-                <button type="submit" className="button primary" onClick={razorScript}>
+                <button type="submit" className="button app-primary" onClick={razorScript}>
                   Continue
                 </button>
               </li>
