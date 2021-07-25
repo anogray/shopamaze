@@ -80,7 +80,7 @@ function OrderScreen(props) {
               Payment Method: {order.payment.paymentMethod}
             </div>
             <div>
-              {order.isPaid ? "Paid " + order.isPaid : "Not Paid."}
+              {order.isPaid ? "Paid " + order.isPaid : "Not Paid"}
             </div>
           </div>
           <div>
@@ -100,7 +100,7 @@ function OrderScreen(props) {
                     <li key={item._id}>
                       <div className="cart-item">
                         <img src={item.image} className="cart-image" alt="product" />
-                      </div>
+                        <div className="cart-item-details">
                       <div className="cart-name">
                         <div>
                           <Link to={"/product/" + item.product}>
@@ -115,6 +115,9 @@ function OrderScreen(props) {
                       <div className="cart-price">
                        Price : ${item.price}
                       </div>
+                      </div>
+                      </div>
+                      
                     </li>
                   )
               }

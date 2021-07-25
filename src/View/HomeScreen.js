@@ -43,7 +43,7 @@ export default function HomeScreen(){
                     </div>
                     <div className="product-brand">{product.brand}</div>
                     <div className="product-price">${product.price}</div>
-                    <div className="product-rating">{product.ratings} Stars ({product.numReviews} Reviews)</div> 
+                    {/* <div className="product-rating">{product.ratings} Stars ({product.numReviews} Reviews)</div>  */}
                   </div>
                 </li>
               ))}

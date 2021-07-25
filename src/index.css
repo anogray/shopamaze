@@ -44,6 +44,15 @@ body{ height:100vh; margin:0; }
     width:100%;
 }
 
+.dropdown-box{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.dropdown-box a{ 
+color:black;
+}
+
 /* HomeScreen */
 .products{
     display: flex;
@@ -53,8 +62,9 @@ body{ height:100vh; margin:0; }
 }
 .products li{
     /* flex: 0 1 34rem; */
+    margin: 1% 5%;
     padding:0;
-    margin: 1rem;
+    /* margin: 1rem; */
     border-bottom: 1px rgb(209, 203, 203) solid;
     list-style-type: none;
 }
@@ -209,7 +219,7 @@ border-top: 1px solid #DDDDDD;
 border-bottom: 1px solid #DDDDDD;
 padding: 12px;
 align-items: center;
-justify-content: space-between;
+/* justify-content: space-between; */
 }
 
 .cart-item-details {
@@ -247,6 +257,10 @@ justify-content: space-between;
   cursor: pointer;
 }
 
+.cart-item > div a{
+text-decoration: none;
+}
+
 /* forms */
 
 .form {
@@ -254,6 +268,9 @@ justify-content: space-between;
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+.form form{
+  width: 40%;
 }
 .form-container {
   display: flex;
@@ -263,6 +280,7 @@ justify-content: space-between;
   border: 0.1rem #c0c0c0 solid;
   border-radius: 0.5rem;
   list-style-type: none;
+  width: 100%;
 }
 .form-container li {
   display: flex;
@@ -274,6 +292,10 @@ input {
   padding: 1rem;
   border: 0.1rem #c0c0c0 solid;
   border-radius: 0.5rem;
+}
+.linkbtn {
+text-decoration: none;
+color:darkblue(146, 153, 146);
 }
 
 /* Products */
@@ -296,6 +318,10 @@ th {
 }
 tbody > tr:nth-child(odd) {
   background-color: #f0f0f0;
+}
+
+.product a img{
+  height: 150px;
 }
 
 /* Checkout Steps */
@@ -426,6 +452,7 @@ tbody > tr:nth-child(odd) {
   /* width: 30%; */
   /* justify-content: space-around; */
   margin-right: 5%;
+  align-items: center;
 }
 
 
@@ -435,6 +462,9 @@ tbody > tr:nth-child(odd) {
 }
 .ordered-title{
 
+}
+.order-extras a{ 
+text-decoration: none;
 }
 
 .order-price{
@@ -454,6 +484,9 @@ tbody > tr:nth-child(odd) {
 .modal-header {
   justify-content: center !important;
  
+}
+.ui-loading{
+  text-align: center;
 }
 
 .modal-success{

@@ -17,6 +17,9 @@ function ProductsScreen(props) {
   const [uploading, setUploading] = useState(false);
   const productsList = useSelector((state) => state.productList);
   const { loading, productList, error } = productsList;
+  
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   const productSave = useSelector((state) => state.productSave);
   const {
@@ -34,6 +37,11 @@ function ProductsScreen(props) {
   const dispatch = useDispatch();
 console.log("successSave",successSave);
   useEffect(() => {
+
+    if(!userInfo){
+      console.log("userinfonot");
+      props.history.push("/");
+    }
     if (successSave) {
       setModalVisible(false);
     }
@@ -95,7 +103,7 @@ console.log("successSave",successSave);
       });
   };
   return (
-    <div className="content content-margined">
+    userInfo && <div className="content content-margined">
       <div className="product-header">
         <h3>Products</h3>
         <button className="button app-primary" onClick={() => openModal({})}>

@@ -51,11 +51,11 @@ function SigninScreen(props) {
         <li>
           <button type="submit" className="button app-primary">Signin</button>
         </li>
-        <li>
-          New to amazona?
+        <li style={{textAlign:'center'}}>
+          New to shopamaze ?
         </li>
         <li>
-          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center" >Create your amazona account</Link>
+          <Link to={redirect === "/" ? "register" : "register?redirect=" + redirect} className="button secondary text-center linkbtn" >Create your shopamaze account</Link>
         </li>
       </ul>
     </form>

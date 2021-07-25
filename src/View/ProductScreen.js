@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import data from "../data"
 import {detailsProduct} from '../redux/actions/productActions';
+
 import Loader from '../components/Loader';
 
 
@@ -43,7 +44,7 @@ export default function ProductScreen(props){
         <div className="details-info">
             <ul>
                 <li>{product.name}</li>
-                <li>{product.rating} Stars ({product.numReviews} Reviews)</li>
+                {/* <li>{product.rating} Stars ({product.numReviews} Reviews)</li> */}
                 <li>
                 Price :
                 <strong>

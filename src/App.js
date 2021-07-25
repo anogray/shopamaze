@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { BrowserRouter, Route, Switch, Link, Redirect  } from 'react-router-dom'
 import CartScreen from './View/CartScreen';
 import HomeScreen from './View/HomeScreen';
 import OrderScreen from './View/OrderScreen';
@@ -13,16 +13,32 @@ import RegisterScreen from './View/RegisterScreen';
 import ShippingScreen from './View/ShippingScreen';
 import SignInScreen from './View/SignInScreen';
 import Verification from './View/Verification';
-import {Modal, Button} from "react-bootstrap";
+import {Modal, Button, NavDropdown} from "react-bootstrap";
 import { useState } from 'react';
 import OrderHistory from './View/OrderHistory';
+
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import { logout } from './redux/actions/userActions';
 
 
 function App() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
-  
+  const dispatch = useDispatch();
 
 
   const  openMenu = ()=> {
@@ -32,27 +48,13 @@ const closeMenu=()=> {
     document.querySelector(".sidebar").classList.remove("open");
 }
 
-const AccountsList = ()=>(
 
-  <div className="account-list">
-      <div className="dropdown">
-                {/* <a href="#">Admin</a> */}
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/orders">Your Orders</Link>
-                  </li>
-                  { userInfo && true && <li>
-                    <Link to="/products">Products</Link>
-                  </li>}
-                </ul>
-              </div>
-  </div>
-)
-// const accountHandle = ()=>{
+ const signOutHandle = ()=>{
 
-//   document.querySelector(".account-list").classList.add("open");
-
-// }
+    
+    dispatch(logout());
+    
+ }
 
 
 
@@ -68,15 +70,23 @@ const AccountsList = ()=>(
         </div>
         <div className="header-links">
         <Link to ="/cart">Cart</Link>
-        <Link to ="/orderhistory">Orders</Link>
+        
         {/* SignInScreen */}
         {userInfo ? (
-              <Link to="/profile" onClick={"accountHandle"}>{userInfo.name}</Link>
+              <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+              <div className="dropdown-box">
+                {/* <NavDropdown.Item href="/products">Action</NavDropdown.Item> */}
+                
+                <NavDropdown.Item><Link to="/orderhistory">Orders</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="/products">Product</Link></NavDropdown.Item>
+                <NavDropdown.Item><Link to="/" onClick={signOutHandle}>Sign Out</Link></NavDropdown.Item>
+                {/* <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item> */}
+                </div>
+            </NavDropdown>
+
             ) : (
               <div className="account-handle">
               <Link to ="/signin">Hello Sign In</Link>
-              
-              <AccountsList/>
               </div>
             )}
               
@@ -105,8 +115,8 @@ const AccountsList = ()=>(
           <Route exact path="/"  component={HomeScreen} />
           <Route path="/signin" component = {SignInScreen} />
           <Route path="/register" component={RegisterScreen} />
-          <Route path="/products" component={ProductsScreen} />
-          <Route path="/product/:id" component={ProductScreen} />
+          {userInfo &&  userInfo.isAdmin && <Route exact path="/products" component={ProductsScreen} />}
+          {<Route exact path="/product/:id" component={ProductScreen} />}
           <Route path="/cart/:id?" component = {CartScreen} />
           <Route path="/shipping" component={ShippingScreen} />
           <Route path="/orderhistory" component={OrderHistory} />
@@ -116,6 +126,7 @@ const AccountsList = ()=>(
           <Route path="/orders" component={OrdersScreen} />
           <Route path="/profile" component={ProfileScreen} />
           <Route path="/verification" component={Verification} />
+          <Redirect to ="/"></Redirect>
         </Switch>
         </div>
     </main>

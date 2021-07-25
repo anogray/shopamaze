@@ -4,7 +4,9 @@ import { saveShipping } from "../redux/actions/cartActions";
 
 const ShippingScreen = (props) => {
 
+  const [name, setName] = useState('');
   const [address, setAddress] = useState('');
+  const [state, setStates] = useState('');
   const [city, setCity] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [country, setCountry] = useState('');
@@ -13,7 +15,8 @@ const ShippingScreen = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(saveShipping({ address, city, postalCode, country }));
+    console.log({ name, state, address, city, postalCode, country })
+    dispatch(saveShipping({ name, state, address, city, postalCode, country }));
     props.history.push('payment');
   }
     
@@ -26,10 +29,24 @@ const ShippingScreen = (props) => {
           </li>
 
           <li>
+            <label htmlFor="name">
+              Name
+          </label>
+            <input type="text" name="name" id="name" onChange={(e) => setName(e.target.value)}>
+            </input>
+          </li>
+          <li>
             <label htmlFor="address">
               Address
           </label>
             <input type="text" name="address" id="address" onChange={(e) => setAddress(e.target.value)}>
+            </input>
+          </li>
+          <li>
+            <label htmlFor="state">
+              State
+          </label>
+            <input type="text" name="state" id="state" onChange={(e) => setStates(e.target.value)}>
             </input>
           </li>
           <li>
