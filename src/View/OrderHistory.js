@@ -124,9 +124,9 @@ console.log("orderhistory",orders);
                     <div className="order-invoice">
                     {/* <Button  color ="primary" onClick={()=>downloadInvoice(order._id)}>Invoice</Button> */}
                     {/* <Button  color ="primary" onClick={()=>downloadInvoice(order._id)}>Invoice</Button> */}
-                    <Button variant="outlined" color="primary" onClick={()=>handleClickOpen(order._id)}>
+                    {order.invoice && <Button variant="outlined" color="primary" onClick={()=>handleClickOpen(order._id)}>
                         Invoice
-                    </Button>
+                    </Button>}
                     <Dialog
                         open={open}
                         onClose={handleClose}

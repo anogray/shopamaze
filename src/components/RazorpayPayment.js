@@ -42,7 +42,7 @@ function RazorpayPayment(props) {
             console.log("paymentData from server",data)
     
             const options = {
-                key: __DEV__ ? data.client_Id : 'PRODUCTION_KEY',
+                key: __DEV__ ? data.client_Id : data.client_Id,
                 currency: data.currency,
                 amount: data.amount+"",
                 order_id: data.id,
