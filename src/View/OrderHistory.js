@@ -67,7 +67,7 @@ useEffect(() => {
 
         link.href = downloadUrl;
 
-        link.setAttribute('download', "invoice.pdf"); //any other extension
+        link.setAttribute('download', "invoice.png"); //any other extension
 
         console.log("url",downloadUrl,link);
 
