@@ -18,6 +18,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import axios from "axios";
 import { useState } from 'react';
+const backendUrl = "https://shopamaze.herokuapp.com";
 
 
 const OrderHistory = (props) => {
@@ -52,7 +53,7 @@ useEffect(() => {
   const downloadInvoice = (orderId,toInvoice)=>{
                 setGotResp(true);
       console.log({orderId},{toInvoice});
-         axios.post("/api/download/",{orderId,toInvoice}).then((resp)=>
+         axios.post(backendUrl+"/api/download/",{orderId,toInvoice}).then((resp)=>
         {
             console.log("email resp",resp);
 

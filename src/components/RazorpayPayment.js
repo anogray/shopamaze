@@ -37,7 +37,7 @@ function RazorpayPayment(props) {
             return
         }
     
-        const {data} = await axios.post('/api/razorpay',order);
+        const {data} = await axios.post('https://shopamaze.herokuapp.com/api/razorpay',order);
     
             console.log("paymentData from server",data)
     

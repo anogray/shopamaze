@@ -5,7 +5,7 @@ import Cookie from "js-cookie";
 export const addToCart = (productId, qty) => async(dispatch, getState)=>{
 
     try{
-        const {data} = await axios.get(`/api/products/${productId}`);
+        const {data} = await axios.get(`https://shopamaze.herokuapp.com/api/products/${productId}`);
         dispatch({type:cart.CART_ADD_ITEM,
             payload:{...data, product: data._id, countInStock: data.countInStock, qty}
         })
