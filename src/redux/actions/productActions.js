@@ -1,7 +1,10 @@
 import axios from "axios";
 import Product from "../constants/productConstants";
 
-const backendUrl = "https://shopamaze.herokuapp.com";
+import domainType from "../../components/utils";
+
+
+const backDomain = domainType();
 
 const dispatchProduct = (data)=>{
     return{
@@ -20,7 +23,7 @@ const listProducts = () => async(dispatch)=>{
     
     try{
         dispatch({type:Product.PRODUCT_LIST_REQUEST});
-        const {data} = await axios.get(backendUrl+"/api/products/");
+        const {data} = await axios.get(backDomain+"/api/products/");
         console.log("dispatchData",data);
         dispatch(dispatchProduct(data));
     }
@@ -32,7 +35,7 @@ const listProducts = () => async(dispatch)=>{
 const detailsProduct = (productId)=> async(dispatch)=>{
     try{
         dispatch({type:Product.PRODUCT_DETAILS_REQUEST});
-        const {data} = await axios.get(backendUrl+`/api/products/${productId}`);
+        const {data} = await axios.get(backDomain+`/api/products/${productId}`);
         console.log("prodData",data);
 
         dispatch({type:Product.PRODUCT_DETAILS_SUCCESS, payload:data});
@@ -50,7 +53,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
         userSignin: { userInfo },
       } = getState();
       if (!product._id) {
-        const { data } = await axios.post(backendUrl+'/api/products', product, {
+        const { data } = await axios.post(backDomain+'/api/products', product, {
           headers: {
             Authorization: 'Bearer ' + userInfo.token,
           },
@@ -59,7 +62,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       } else {
         console.log("else put product",userInfo);
         const { data } = await axios.put(
-          backendUrl+'/api/products/' + product._id,
+          backDomain+'/api/products/' + product._id,
           product,
           {
             headers: {
@@ -81,7 +84,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
         userSignin: { userInfo },
       } = getState();
       dispatch({ type: Product.PRODUCT_DELETE_REQUEST, payload: productId });
-      const { data } = await axios.delete(backendUrl+'/api/products/' + productId, {
+      const { data } = await axios.delete(backDomain+'/api/products/' + productId, {
         headers: {
           Authorization: 'Bearer ' + userInfo.token,
         },

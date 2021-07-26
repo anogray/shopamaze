@@ -4,14 +4,17 @@ import {
   ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS, ORDER_PAY_FAIL, MY_ORDER_LIST_REQUEST, MY_ORDER_LIST_SUCCESS, MY_ORDER_LIST_FAIL, ORDER_DELETE_REQUEST, ORDER_DELETE_SUCCESS, ORDER_DELETE_FAIL, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_LIST_FAIL, ORDER_PAID_CLEAR, ORDER_CREATED_CLEAR, ORDER_DETAILS_CLEAR
 } from "../constants/orderConstants";
 
-const backendUrl = "https://shopamaze.herokuapp.com";
+import domainType from "../../components/utils";
+
+
+const backDomain = domainType();
 
 const createOrder = (order) => async (dispatch, getState) => {
   try {
     console.log("dispatched createOrder",order);
     dispatch({ type: ORDER_CREATE_REQUEST, payload: order });
     const { userSignin: { userInfo } } = getState();
-    const { data: { data: newOrder } } = await Axios.post(backendUrl+"/api/orders", order, {
+    const { data: { data: newOrder } } = await Axios.post(backDomain+"/api/orders", order, {
       headers: {
         Authorization: ' Bearer ' + userInfo.token
       }
@@ -26,7 +29,7 @@ const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_ORDER_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get(backendUrl+"/api/orders/paid", {
+    const { data } = await Axios.get(backDomain+"/api/orders/paid", {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -41,7 +44,7 @@ const listOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get(backendUrl+"/api/orders", {
+    const { data } = await Axios.get(backDomain+"/api/orders", {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -55,7 +58,7 @@ const detailsOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get(backendUrl+"/api/orders/" + orderId, {
+    const { data } = await Axios.get(backDomain+"/api/orders/" + orderId, {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -69,7 +72,7 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST, payload: paymentResult });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.get(backendUrl+"/api/orders/" + order._id + "/pay", {
+    const { data } = await Axios.get(backDomain+"/api/orders/" + order._id + "/pay", {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });
@@ -83,7 +86,7 @@ const deleteOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DELETE_REQUEST, payload: orderId });
     const { userSignin: { userInfo } } = getState();
-    const { data } = await Axios.delete(backendUrl+"/api/orders/" + orderId, {
+    const { data } = await Axios.delete(backDomain+"/api/orders/" + orderId, {
       headers:
         { Authorization: 'Bearer ' + userInfo.token }
     });

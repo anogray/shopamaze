@@ -18,12 +18,13 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import axios from "axios";
 import { useState } from 'react';
-const backendUrl = "https://shopamaze.herokuapp.com";
+import domainType from "../components/utils";
 
-const __DEV__ = document.domain === 'localhost'
-const backDomain = __DEV__ ? "" : backendUrl;
+
+const backDomain = domainType();
 
 const OrderHistory = (props) => {
+    console.log("domainType",backDomain);
 
 const myOrderList = useSelector(state => state.myOrderList);
 const { loading: loadingOrders, orders, error: errorOrders } = myOrderList;
@@ -103,7 +104,7 @@ useEffect(() => {
 
      handleClose();
 
-    }).catch(err => console.log("err",err))
+    }).catch(err => console.log("err",err.message))
   }
 //let datestr = order.createdAt.toDateString().split(" ")${datestr[1]} ${datestr[2]}, ${datestr[3]}
 console.log("orderhistory",orders);

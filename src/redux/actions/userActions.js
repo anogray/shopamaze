@@ -1,14 +1,15 @@
 import Axios from "axios";
 import Cookie from 'js-cookie';
 import user from "../constants/userConstants";
-const backendUrl = "https://shopamaze.herokuapp.com";
+import domainType from "../../components/utils";
 
+const backDomain = domainType();
 
 const update = ({ userId, name, email, password }) => async (dispatch, getState) => {
   const { userSignin: { userInfo } } = getState();
   dispatch({ type: user.USER_UPDATE_REQUEST, payload: { userId, name, email, password } });
   try {
-    const { data } = await Axios.put(backendUrl+"/api/users/" + userId,
+    const { data } = await Axios.put(backDomain+"/api/users/" + userId,
       { name, email, password }, {
       headers: {
         Authorization: 'Bearer ' + userInfo.token
@@ -24,7 +25,7 @@ const update = ({ userId, name, email, password }) => async (dispatch, getState)
 const signin = (email, password) => async (dispatch) => {
   dispatch({ type: user.USER_SIGNIN_REQUEST, payload: { email, password } });
   try {
-    const { data } = await Axios.post(backendUrl+"/api/users/signin", { email, password });
+    const { data } = await Axios.post(backDomain+"/api/users/signin", { email, password });
     dispatch({ type: user.USER_SIGNIN_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
   } catch (error) {
@@ -35,7 +36,7 @@ const signin = (email, password) => async (dispatch) => {
 const register = (name, email, password) => async (dispatch) => {
   dispatch({ type: user.USER_REGISTER_REQUEST, payload: { name, email, password } });
   try {
-    const { data } = await Axios.post(backendUrl+"/api/users/register", { name, email, password });
+    const { data } = await Axios.post(backDomain+"/api/users/register", { name, email, password });
     dispatch({ type: user.USER_REGISTER_SUCCESS, payload: data });
     Cookie.set('userInfo', JSON.stringify(data));
   } catch (error) {

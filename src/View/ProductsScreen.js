@@ -4,7 +4,8 @@ import axios from 'axios';
 import {listProducts, saveProduct, deleteProduct} from '../redux/actions/productActions';
 import Loader from '../components/Loader';
 
-const backendUrl = "https://shopamaze.herokuapp.com";
+import domainType from "../components/utils";
+const backDomain = domainType();
 
 function ProductsScreen(props) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -90,7 +91,7 @@ console.log("successSave",successSave);
     bodyFormData.append('image', file);
     setUploading(true);
     axios
-      .post(backendUrl+'/api/uploads', bodyFormData, {
+      .post(backDomain+'/api/uploads', bodyFormData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
