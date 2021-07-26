@@ -61,6 +61,10 @@ useEffect(() => {
 
         if(toInvoice=="download"){    
         console.log("fileurl",resp);
+
+        if(resp.data.fileUrl==false){
+            throw new Error("File doesn't exist !");
+        }
         axios.get(`${backDomain}${resp.data.fileUrl}`,{responseType: 'blob'}).then(({ data }) => {
             console.log("download blob",data)
         const downloadUrl = window.URL.createObjectURL(new Blob([data]));
@@ -80,7 +84,7 @@ useEffect(() => {
         link.remove();
         setGotResp(false);
 
-      }).catch(err => console.log("err"))
+      })
     }
       /*
       .then()
@@ -92,7 +96,7 @@ useEffect(() => {
 
      handleClose();
 
-    }).catch(err => console.log("err"))
+    }).catch(err => console.log("err",err))
   }
 //let datestr = order.createdAt.toDateString().split(" ")${datestr[1]} ${datestr[2]}, ${datestr[3]}
 console.log("orderhistory",orders);
