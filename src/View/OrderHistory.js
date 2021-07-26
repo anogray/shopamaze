@@ -55,7 +55,11 @@ useEffect(() => {
   const downloadInvoice = (orderId,toInvoice)=>{
                 setGotResp(true);
       console.log({orderId},{toInvoice});
-         axios.post(backDomain+"/api/download/",{orderId,toInvoice}).then((resp)=>
+         axios.post(backDomain+"/api/download/",{orderId,toInvoice},{
+            headers: {
+              Authorization: 'Bearer ' + userInfo.token,
+            },
+          }).then((resp)=>
         {
             console.log("email resp",resp);
 
