@@ -21,7 +21,7 @@ import { useState } from 'react';
 const backendUrl = "https://shopamaze.herokuapp.com";
 
 const __DEV__ = document.domain === 'localhost'
-const backDomain = __DEV__ ? "" : backendUrl+"/";
+const backDomain = __DEV__ ? "" : backendUrl;
 
 const OrderHistory = (props) => {
 
@@ -55,7 +55,7 @@ useEffect(() => {
   const downloadInvoice = (orderId,toInvoice)=>{
                 setGotResp(true);
       console.log({orderId},{toInvoice});
-         axios.post(backDomain+"api/download/",{orderId,toInvoice}).then((resp)=>
+         axios.post(backDomain+"/api/download/",{orderId,toInvoice}).then((resp)=>
         {
             console.log("email resp",resp);
 
