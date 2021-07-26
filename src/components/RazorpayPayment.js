@@ -46,8 +46,8 @@ function RazorpayPayment(props) {
                 currency: data.currency,
                 amount: data.amount+"",
                 order_id: data.id,
-                name: 'Testing order',
-                description: 'Thank you for nothing. Please give us some exp',
+                name: 'Product Order',
+                description: 'Thank you for shopping with shopamaze !',
                 //  callback_url: 'http://localhost:3004/api/razorpay/verification',
                 image: '',
                 handler: function (response) {

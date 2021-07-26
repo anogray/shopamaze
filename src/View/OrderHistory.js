@@ -20,6 +20,8 @@ import axios from "axios";
 import { useState } from 'react';
 const backendUrl = "https://shopamaze.herokuapp.com";
 
+const __DEV__ = document.domain === 'localhost'
+const backDomain = __DEV__ ? "" : backendUrl+"/";
 
 const OrderHistory = (props) => {
 
@@ -53,13 +55,13 @@ useEffect(() => {
   const downloadInvoice = (orderId,toInvoice)=>{
                 setGotResp(true);
       console.log({orderId},{toInvoice});
-         axios.post(backendUrl+"/api/download/",{orderId,toInvoice}).then((resp)=>
+         axios.post(backDomain+"api/download/",{orderId,toInvoice}).then((resp)=>
         {
             console.log("email resp",resp);
 
         if(toInvoice=="download"){    
         console.log("fileurl",resp);
-        axios.get(`${resp.data.fileUrl}`,{responseType: 'blob'}).then(({ data }) => {
+        axios.get(`${backDomain}${resp.data.fileUrl}`,{responseType: 'blob'}).then(({ data }) => {
             console.log("download blob",data)
         const downloadUrl = window.URL.createObjectURL(new Blob([data]));
 
@@ -67,7 +69,7 @@ useEffect(() => {
 
         link.href = downloadUrl;
 
-        link.setAttribute('download', "invoice.png"); //any other extension
+        link.setAttribute('download', "invoice.pdf"); //any other extension
 
         console.log("url",downloadUrl,link);
 
