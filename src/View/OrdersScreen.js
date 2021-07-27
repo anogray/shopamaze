@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listOrders, deleteOrder } from '../redux/actions/orderActions';
 import Loader from '../components/Loader';
+import CheckBoxOutlineBlankSharpIcon  from '@material-ui/icons/CheckBoxOutlineBlankSharp';
 
 function OrdersScreen(props) {
   const orderList = useSelector(state => state.orderList);
@@ -23,7 +24,7 @@ function OrdersScreen(props) {
   const deleteHandler = (order) => {
     dispatch(deleteOrder(order._id));
   }
-  return loading ? <Loader/> :
+  return loading ? <div className="loading-position"><Loader/></div> :
     <div className="content content-margined">
 
       <div className="order-header">

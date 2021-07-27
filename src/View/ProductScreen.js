@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import data from "../data"
 import {detailsProduct} from '../redux/actions/productActions';
-
 import Loader from '../components/Loader';
+import KeyboardBackspaceIcon from '@material-ui/icons/KeyboardBackspace';
 
 
 export default function ProductScreen(props){
@@ -32,7 +32,7 @@ export default function ProductScreen(props){
     return(
         <>
         <div className="back-to-result">
-            <Link to="/">Back to result</Link>
+            <Link to="/"><KeyboardBackspaceIcon/></Link>
         </div>
         {loading ? <Loader/> : 
         error ? <div>{error}</div> :
@@ -48,7 +48,7 @@ export default function ProductScreen(props){
                 <li>
                 Price :
                 <strong>
-                    {product.price}
+                  INR  {product.price}
                 </strong>
                 </li>
                 {product.description && <li>
@@ -60,7 +60,7 @@ export default function ProductScreen(props){
         </div>
         <div className="details-action">
               <ul>
-                <li>Price: {product.price}</li>
+                <li>Price: INR {product.price}</li>
                 <li>
                   Status:{' '}
                   {product.countInStock > 0 ? 'In Stock' : 'Unavailable.'}

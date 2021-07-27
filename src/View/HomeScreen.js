@@ -25,7 +25,8 @@ export default function HomeScreen(){
     return(
         <>
         {loading ? (
-          <Loader/>
+          <div className="loading-position"><Loader/></div>
+          
           ) : error ? (
             <div>{error}</div>
           ) : (
@@ -44,7 +45,7 @@ export default function HomeScreen(){
                       <Link to={'/product/' + product._id}>{product.name}</Link>
                     </div>
                     <div className="product-brand">{product.brand}</div>
-                    <div className="product-price">${product.price}</div>
+                    <div className="product-price">INR {product.price}</div>
                     {/* <div className="product-rating">{product.ratings} Stars ({product.numReviews} Reviews)</div>  */}
                   </div>
                 </li>

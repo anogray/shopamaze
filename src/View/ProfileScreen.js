@@ -48,7 +48,7 @@ function ProfileScreen(props) {
               <h2>User Profile</h2>
             </li>
             <li>
-              {loading && <Loader/>}
+              {loading && <div className="loading-position"><Loader/></div>}
               {error && <div>{error}</div>}
               {success && <div>Profile Saved Successfully.</div>}
             </li>

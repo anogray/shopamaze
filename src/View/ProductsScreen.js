@@ -121,7 +121,7 @@ console.log("successSave",successSave);
                 <h2>Create Product</h2>
               </li>
               <li>
-                {loadingSave && <Loader/>}
+                {loadingSave && <div className="loading-position"><Loader/></div>}
                 {errorSave && <div>{errorSave}</div>}
               </li>
 

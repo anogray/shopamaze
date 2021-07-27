@@ -110,7 +110,7 @@ useEffect(() => {
 console.log("orderhistory",orders);
     return (
         <div classname="ordered-container">
-        { loadingOrders ? <Loader/> :
+        { loadingOrders ? <div className="loading-position"><Loader/></div> :
           errorOrders ? <div>{errorOrders} </div> :
             orders.map((order)=>(<div key={order._id} className="ordered-body">
             

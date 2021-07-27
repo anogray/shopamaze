@@ -7,6 +7,9 @@ import { clearCartSuccess } from '../redux/actions/cartActions';
 import Toast from '../components/Toast';
 import {Modal,Button, Spinner} from "react-bootstrap";
 import Loader from '../components/Loader';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import BlockSharpIcon from '@material-ui/icons/BlockSharp';
+import CheckBoxOutlineBlankSharpIcon  from '@material-ui/icons/CheckBoxOutlineBlankSharp';
 
 function OrderScreen(props) {
 
@@ -57,7 +60,7 @@ function OrderScreen(props) {
 
 
   return successPay  ? <Toast/>
-    : loading ? <Loader/> : error ? <div>{error}</div> :
+    : loading ? <div className="loading-position"><Loader/></div> : error ? <div>{error}</div> :
 
     <div>
       <div className="placeorder">
@@ -70,8 +73,8 @@ function OrderScreen(props) {
               {order.shipping.address}, {order.shipping.city},
           {order.shipping.postalCode}, {order.shipping.country},
           </div>
-            <div>
-              {order.isDelivered ? "Delivered at " + order.deliveredAt : "Not Delivered."}
+            <div className="paid-icon">
+              Delivered : {order.isDelivered ? "Delivered at " + order.deliveredAt : <CheckBoxOutlineBlankSharpIcon/>}
             </div>
           </div>
           <div>
@@ -79,8 +82,8 @@ function OrderScreen(props) {
             <div>
               Payment Method: {order.payment.paymentMethod}
             </div>
-            <div>
-              {order.isPaid ? "Paid " + order.isPaid : "Not Paid"}
+            <div className="paid-icon">
+              Paid {order.isPaid ? <CheckBoxIcon/> : <CheckBoxOutlineBlankSharpIcon/>}
             </div>
           </div>
           <div>
@@ -141,19 +144,19 @@ function OrderScreen(props) {
             </li>
             <li>
               <div>Items</div>
-              <div>${order.itemsPrice}</div>
+              <div>INR {order.itemsPrice}</div>
             </li>
             <li>
               <div>Shipping</div>
-              <div>${order.shippingPrice}</div>
+              <div>INR {order.shippingPrice}</div>
             </li>
             <li>
               <div>Tax</div>
-              <div>${order.taxPrice}</div>
+              <div>INR {order.taxPrice}</div>
             </li>
             <li>
               <div>Order Total</div>
-              <div>${order.totalPrice}</div>
+              <div>INR {order.totalPrice}</div>
             </li>
           </ul>
 

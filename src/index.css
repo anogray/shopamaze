@@ -160,8 +160,12 @@ margin-bottom: 1rem;
 margin-bottom: 1rem;
 }
 
-.back-to-result{
+.back-to-result {
   padding:1rem;
+  text-decoration: none;
+}
+.back-to-result a{
+  text-decoration: none;
 }
 .details-action{
   border:0.1rem #808080 solid;
@@ -468,7 +472,11 @@ text-decoration: none;
 }
 
 .order-price{
-  margin-left:5%
+  /* margin-left:5% */
+}
+.paid-icon{
+  display: flex;
+  align-items: center;
 }
 .left div:first-child{
   margin-right:5%;
@@ -518,4 +526,9 @@ text-decoration: none;
   border-right-color: transparent;
   border-radius: 50%;
   animation: spin 2s linear infinite;
+}
+.loading-position{
+  text-align: center;
+  /* margin: auto; */
+  margin-top: 10%;
 }
