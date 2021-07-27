@@ -126,7 +126,7 @@ console.log("orderhistory",orders);
                     </div>
                     <div className="order-total">
                         <div >
-                        Order Total
+                        Order Total INR
                         </div>
                         <div >
                         {order.totalPrice}
